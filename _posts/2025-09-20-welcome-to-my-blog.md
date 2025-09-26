@@ -103,7 +103,7 @@ excerpt: "首篇欢迎文章：介绍本站定位、内容规划、技术栈、�
 ## 📬 联系方式
 
 - GitHub: [QLHazyCoder](https://github.com/QLHazyCoder)
-- Email: your-email@example.com  
+- Email: 2825305047@qq.com  
 （后续可能新增：RSS、Newsletter、讨论区）
 
 ---

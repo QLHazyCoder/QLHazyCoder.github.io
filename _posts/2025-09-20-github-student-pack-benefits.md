@@ -1,17 +1,20 @@
 ---
-title: "GitHub 学生身份官方核心功能校准指南（仅 GitHub 自家生态）"
+title: "2025年个人博客搭建完全指南：选择、部署与优化策略"
 date: 2025-09-20T21:32:30+08:00
 categories:
-  - 资源
+  - 技术教程
+  - 博客建站
 tags:
-  - GitHub
-  - 学生包
-  - 工程实践
-  - 安全
-  - 自动化
+  - Jekyll
+  - Hugo
+  - Hexo
+  - GitHub Pages
+  - Vercel
+  - 博客搭建
 toc: true
 toc_sticky: true
-excerpt: "仅聚焦 GitHub 官方（非第三方合作）功能：Copilot、Codespaces、Pages、Actions、Packages、Dependabot、Code Scanning、Secret Scanning、协作与项目规划等，含真实可验证描述，并将官方文档链接内联到对应段落。"
+published: false
+excerpt: "从零开始搭建个人技术博客：静态网站生成器选择、部署平台对比、域名配置、SEO优化等完整指南，让你快速拥有专业的个人博客。"
 ---
 
 > 本文聚焦 **GitHub 学生身份（Student Developer Pack 场景下）可利用的 GitHub 官方自家功能**（排除第三方合作福利），说明定位、启用方式、常见误区与展示建议。  

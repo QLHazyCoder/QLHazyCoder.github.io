@@ -26,7 +26,7 @@ url                      : "https://20021108.xyz"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "QLHazyCoder/QLHazyCoder.github.io"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
+logo                     : "/assets/images/favicon.png" # path of logo image to display in the masthead
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 breadcrumbs              : # true, false (default)
 words_per_minute         : 200
@@ -70,7 +70,7 @@ atom_feed:
   hide                   : # true, false (default)
 search                   : true # true, false (default)
 search_full_content      : true # true, false (default)
-search_provider          : # lunr (default), algolia, google
+search_provider          : "lunr" # lunr (default), algolia, google
 lunr:
   search_within_pages    : # true, false (default)
 algolia:
@@ -105,7 +105,7 @@ social:
 
 # Analytics
 analytics:
-  provider               : # false (default), "google", "google-universal", "google-gtag", "custom"
+  provider               : "custom" # false (default), "google", "google-universal", "google-gtag", "custom"
   google:
     tracking_id          :
     anonymize_ip         : # true, false (default)
@@ -114,29 +114,23 @@ analytics:
 # Site Author
 author:
   name             : "祁连海"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "聚焦 AI 应用探索、前沿技术试验与效率工具实践，偏好快速原型验证的技术实践者"
-  location         : "中国"
-  email            :
+  avatar           : "/assets/images/avatar.jpg"
+  bio              : "AI应用 · 技术探索 · 效率实践"
+  location         : "江西"
+  email            : "2825305047@qq.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
-      # url: "mailto:your.name@email.com"
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      # url: "https://twitter.com/"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      # url: "https://facebook.com/"
+      url: "mailto:2825305047@qq.com"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/QLHazyCoder"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+    - label: "Telegram"
+      icon: "fab fa-fw fa-telegram"
+      url: "https://t.me/QLHazyCoder"
+    - label: "AI公益站"
+      icon: "fas fa-fw fa-robot"
+      url: "https://ai-api.20021108.xyz"
 
 # Site Footer
 footer:
