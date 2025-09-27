@@ -131,6 +131,7 @@ author:
     - label: "AI公益站"
       icon: "fas fa-fw fa-robot"
       url: "https://ai-api.20021108.xyz"
+      new_window: true
 
 # Site Footer
 footer:

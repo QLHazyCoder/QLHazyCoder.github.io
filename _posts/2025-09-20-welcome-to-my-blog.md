@@ -96,13 +96,14 @@ excerpt: "首篇欢迎文章：介绍本站定位、内容规划、技术栈、�
 - 图表嵌入功能已上线
 - 工程示例仓库链接区已接入
 - 讨论区功能已上线，可通过登录 GitHub 参与讨论
+
 ---
 
 ## 📬 联系方式
 
 - GitHub: [QLHazyCoder](https://github.com/QLHazyCoder)
 - Email: 2825305047@qq.com  
-- [AI公益站](https://example.com) {:target="_blank"}
+- Telegram: [@QLHazyCoder](https://t.me/QLHazyCoder)
 
 ---
 
