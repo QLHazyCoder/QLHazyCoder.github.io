@@ -1,28 +1,105 @@
 {% if site.footer_scripts %}
-  {% for script in site.footer_scripts %}
-    <script src="{{ script | relative_url }}"></script>
-  {% endfor %}
+{% for script in site.footer_scripts %}
+<script src="{{ script | relative_url }}"></script>
+{% endfor %}
 {% else %}
-  <script src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
+<script src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
 {% endif %}
 
+<script>
+  (function () {
+    var buttons = document.querySelectorAll('.author__email-button');
+    if (!buttons.length) {
+      return;
+    }
+
+    var fallbackCopy = function (text) {
+      var textarea = document.createElement('textarea');
+      textarea.className = 'clipboard-helper';
+      textarea.setAttribute('readonly', '');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.top = '-9999px';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      var success = false;
+      try {
+        textarea.select();
+        success = document.execCommand('copy');
+      } catch (e) {
+        success = false;
+      }
+      textarea.parentNode.removeChild(textarea);
+      return success;
+    };
+
+    var copyEmail = function (text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text).then(function () {
+          return true;
+        }).catch(function () {
+          return fallbackCopy(text);
+        });
+      }
+      return Promise.resolve(fallbackCopy(text));
+    };
+
+    var setFeedback = function (button, success) {
+      var feedback = button.parentElement.querySelector('.author__email-feedback');
+      if (!feedback) {
+        return;
+      }
+
+      var message = success ? button.getAttribute('data-success') : button.getAttribute('data-failure');
+      feedback.textContent = message || '';
+      feedback.classList.remove('is-success', 'is-error');
+      if (message) {
+        feedback.classList.add(success ? 'is-success' : 'is-error');
+      }
+
+      if (button._emailFeedbackTimeout) {
+        window.clearTimeout(button._emailFeedbackTimeout);
+      }
+
+      button._emailFeedbackTimeout = window.setTimeout(function () {
+        feedback.textContent = '';
+        feedback.classList.remove('is-success', 'is-error');
+        button._emailFeedbackTimeout = null;
+      }, 2000);
+    };
+
+    buttons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        var email = button.getAttribute('data-email');
+        if (!email) {
+          return;
+        }
+
+        copyEmail(email).then(function (result) {
+          setFeedback(button, result === true);
+        });
+      });
+    });
+  })();
+</script>
+
 {% if site.search == true or page.layout == "search" %}
-  {%- assign search_provider = site.search_provider | default: "lunr" -%}
-  {%- case search_provider -%}
-    {%- when "lunr" -%}
-      {% include_cached search/lunr-search-scripts.html %}
-    {%- when "google" -%}
-      {% include_cached search/google-search-scripts.html %}
-    {%- when "algolia" -%}
-      {% include_cached search/algolia-search-scripts.html %}
-  {%- endcase -%}
+{%- assign search_provider = site.search_provider | default: "lunr" -%}
+{%- case search_provider -%}
+{%- when "lunr" -%}
+{% include_cached search/lunr-search-scripts.html %}
+{%- when "google" -%}
+{% include_cached search/google-search-scripts.html %}
+{%- when "algolia" -%}
+{% include_cached search/algolia-search-scripts.html %}
+{%- endcase -%}
 {% endif %}
 
 {% include analytics.html %}
 {% include /comments-providers/scripts.html %}
 
 {% if site.after_footer_scripts %}
-  {% for script in site.after_footer_scripts %}
-    <script src="{{ script | relative_url }}"></script>
-  {% endfor %}
+{% for script in site.after_footer_scripts %}
+<script src="{{ script | relative_url }}"></script>
+{% endfor %}
 {% endif %}
