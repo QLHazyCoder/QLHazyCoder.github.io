@@ -179,7 +179,7 @@
 .author__email {
   margin-top: 0.5em;
   font-size: $type-size-6;
-  line-height: 1.5;
+  line-height: 1.4;
 
   @include breakpoint($large) {
     margin-bottom: 10px;
@@ -188,35 +188,69 @@
   .author__email-button {
     display: inline-flex;
     align-items: center;
-    gap: 0.35em;
-    padding: 0;
-    border: 0;
-    background: transparent;
+    gap: 0.45em;
+    padding: 0.35em 0.85em;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    background: rgba($link-color, 0.08);
     color: inherit;
     font: inherit;
+    line-height: 1.2;
     cursor: pointer;
-    transition: color 0.2s ease-in-out;
+    user-select: none;
+    transition: background 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 
     &:hover,
     &:focus {
       color: $link-color;
+      border-color: rgba($link-color, 0.35);
+      background: rgba($link-color, 0.16);
       text-decoration: none;
       outline: none;
     }
 
     &:focus-visible {
-      outline: 2px solid $focus-color;
-      outline-offset: 2px;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba($focus-color, 0.3);
     }
 
-    i {
-      font-size: $type-size-6;
+    &.is-copied {
+      color: $success-color;
+      border-color: rgba($success-color, 0.4);
+      background: rgba($success-color, 0.18);
     }
+
+    &.is-error {
+      color: $danger-color;
+      border-color: rgba($danger-color, 0.45);
+      background: rgba($danger-color, 0.14);
+    }
+
+    .author__email-icon,
+    .author__email-copy {
+      font-size: $type-size-6;
+      color: $muted-text-color;
+      transition: color 0.2s ease-in-out;
+    }
+
+    &:hover .author__email-icon,
+    &:hover .author__email-copy,
+    &:focus .author__email-icon,
+    &:focus .author__email-copy,
+    &.is-copied .author__email-icon,
+    &.is-copied .author__email-copy {
+      color: currentColor;
+    }
+  }
+
+  .author__email-text {
+    font-size: $type-size-6;
+    color: inherit;
   }
 
   .author__email-feedback {
     display: inline-block;
-    margin-top: 0.25em;
+    margin-top: 0.3em;
     color: $muted-text-color;
     font-size: $type-size-7;
     min-height: 1.2em;

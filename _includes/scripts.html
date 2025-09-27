@@ -53,9 +53,14 @@
       var message = success ? button.getAttribute('data-success') : button.getAttribute('data-failure');
       feedback.textContent = message || '';
       feedback.classList.remove('is-success', 'is-error');
+      button.classList.remove('is-copied', 'is-error');
+
       if (message) {
-        feedback.classList.add(success ? 'is-success' : 'is-error');
+        var statusClass = success ? 'is-success' : 'is-error';
+        feedback.classList.add(statusClass);
       }
+
+      button.classList.add(success ? 'is-copied' : 'is-error');
 
       if (button._emailFeedbackTimeout) {
         window.clearTimeout(button._emailFeedbackTimeout);
@@ -64,20 +69,43 @@
       button._emailFeedbackTimeout = window.setTimeout(function () {
         feedback.textContent = '';
         feedback.classList.remove('is-success', 'is-error');
+        button.classList.remove('is-copied', 'is-error');
         button._emailFeedbackTimeout = null;
       }, 2000);
     };
 
-    buttons.forEach(function (button) {
-      button.addEventListener('click', function () {
-        var email = button.getAttribute('data-email');
-        if (!email) {
-          return;
-        }
+    var triggerCopy = function (button) {
+      var email = button.getAttribute('data-email');
+      if (!email) {
+        return;
+      }
 
-        copyEmail(email).then(function (result) {
-          setFeedback(button, result === true);
-        });
+      copyEmail(email).then(function (result) {
+        setFeedback(button, result === true);
+      }).catch(function () {
+        setFeedback(button, false);
+      });
+    };
+
+    buttons.forEach(function (button) {
+      if (!button.hasAttribute('role')) {
+        button.setAttribute('role', 'button');
+      }
+      if (!button.hasAttribute('tabindex')) {
+        button.setAttribute('tabindex', '0');
+      }
+
+      button.addEventListener('click', function (event) {
+        event.preventDefault();
+        triggerCopy(button);
+      });
+
+      button.addEventListener('keydown', function (event) {
+        var key = event.key || event.code;
+        if (key === 'Enter' || key === ' ' || key === 'Spacebar') {
+          event.preventDefault();
+          triggerCopy(button);
+        }
       });
     });
   })();
